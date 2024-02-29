@@ -4,7 +4,7 @@ import List from '../List';
 
 import { Container } from './styles';
 
-function Board() {
+export default function Board() {
   return (
     <Container>
       <List />
@@ -14,5 +14,3 @@ function Board() {
     </Container>
   );
 }
-
-export default Board;

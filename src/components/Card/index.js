@@ -10,7 +10,7 @@ export default function Card({ data, index, listIndex }) {
   const { move } = useContext(BoardContext);
 
   const [{ isDragging }, dragRef] = useDrag({
-    item: {index, listIndex}, type: 'CARD',
+    item: {type: 'CARD', index, listIndex}, type: 'CARD',
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
@@ -20,7 +20,7 @@ export default function Card({ data, index, listIndex }) {
     accept: 'CARD',
     hover(item, monitor) {
       const draggedListIndex = item.listIndex;
-      const targetListIndex = index; 
+      const targetListIndex = listIndex; 
 
       const draggedIndex = item.index;
       const targetIndex = index;
@@ -55,10 +55,10 @@ export default function Card({ data, index, listIndex }) {
   return (
     <Container ref={ref} isDragging={isDragging}>
       <header>
-        {data.labels.map(label => <Label key={label} color={label} />)}
+        {data?.labels?.map(label => <Label key={label} color={label} />)}
       </header>
-      <p>{data.content}</p>
-      {data.user && <img src={data.user} alt=""/>}
+      <p>{data?.content}</p>
+      { data?.user && <img src={data?.user} alt=""/> }
     </Container>
   );
 }
